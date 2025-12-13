@@ -1,6 +1,6 @@
 import { useState } from "react"
 import './OptimizerForm.css';
-import axios from "axios";
+import { energyMixApi } from "../../api/energyMixApi";
 import type {EnergyMixSummary} from '../../types';
 
 export function OptimizerForm() {
@@ -10,8 +10,8 @@ export function OptimizerForm() {
 
   const handleOptimize = async () => {
 
-    const response = await axios.get(
-      "http://localhost:8080/api/optimizer/clean/energy/optimize/window",
+    const response = await energyMixApi.get<EnergyMixSummary>(
+      "/optimizer/clean/energy/optimize/window",
       {
         params: {
           chargingHoursLength: chargingHours,
