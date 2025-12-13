@@ -1,18 +1,27 @@
 import { useState } from "react"
 import './OptimizerForm.css';
+import axios from "axios";
+import type {EnergyMixSummary} from '../../types';
 
 export function OptimizerForm() {
 
   const [chargingHours, setChargingHours] = useState<number>(0);
-  const [result, setResult] = useState<string>('');
+  const [result, setResult] = useState<EnergyMixSummary | null>(null);
 
-  const handleOptimize = () => {
-    console.log("Charging duration: ", chargingHours, "hours");
+  const handleOptimize = async () => {
 
-    setResult("Best charging window: 02:00 – 05:00")
+    const response = await axios.get(
+      "http://localhost:8080/api/optimizer/clean/energy/optimize/window",
+      {
+        params: {
+          chargingHoursLength: chargingHours,
+        },
+      }
+    )
+    setResult(response.data);
   }
 
-  return(
+  return (
     <div className="optimizer-form">
 
       <label>
@@ -39,9 +48,17 @@ export function OptimizerForm() {
       </button>
 
       {result && (
-          <div className="optimizer-result">
-            <strong>{result}</strong>
-          </div>
+        <div className="optimizer-result">
+          <p>
+            Start date: <strong>{result.from.slice(0, 10)}, at: {result.from.slice(11, 19)}</strong>
+          </p>
+          <p>
+            End date: <strong>{result.to.slice(0, 10)}, at: {result.to.slice(11, 19)}</strong>
+          </p>
+          <p className="optimizer-result-clean">
+            Share of clean energy: <strong>{result.avgCleanEnergy}%</strong>
+          </p>
+        </div>
       )}
     </div>
   )

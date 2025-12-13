@@ -1,9 +1,9 @@
 import { EnergyPieChart } from './EnergyPieChart';
 import './EnergyPieChartGrid.css';
-import type { EnergyMixDay } from '../types';
+import type { EnergyMixSummary } from '../types';
 
 interface EnergyPieChartGridProps {
-  data: EnergyMixDay[];
+  data: EnergyMixSummary[];
 }
 
 export function EnergyPieChartGrid({ data }: EnergyPieChartGridProps ){

@@ -60,3 +60,20 @@
 .optimizer-button:active {
   transform: translateY(0);
 }
+
+.optimizer-result p {
+  color: #333;
+}
+
+.optimizer-result-clean {
+  margin-top: 8px;
+  padding-top: 8px;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+  font-size: 16px;
+  font-weight: 700;
+  color: #2e7d32;
+
+  text-align: center;
+}

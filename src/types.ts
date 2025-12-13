@@ -1,4 +1,4 @@
-export interface EnergyMixDay {
+export interface EnergyMixSummary {
   from: string;
   to: string;
   avgGas: number;

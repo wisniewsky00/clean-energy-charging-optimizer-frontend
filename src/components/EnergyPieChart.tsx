@@ -1,10 +1,10 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer, } from "recharts";
 import type { PieLabelRenderProps } from "recharts";
-import type { EnergyMixDay } from "../types"
+import type { EnergyMixSummary } from "../types"
 import './EnergyPieChart.css';
 
 interface EnergyPieChartProps {
-  day: EnergyMixDay;
+  day: EnergyMixSummary;
 }
 
 const COLORS = [
@@ -96,7 +96,7 @@ export function EnergyPieChart({ day }: EnergyPieChartProps) {
 }
 
 
-function transformDayToChartData(day: EnergyMixDay) {
+function transformDayToChartData(day: EnergyMixSummary) {
   const entries = [
     { name: "Gas", value: day.avgGas },
     { name: "Coal", value: day.avgCoal },
