@@ -5,7 +5,7 @@ import type {EnergyMixSummary} from '../../types';
 
 export function OptimizerForm() {
 
-  const [chargingHours, setChargingHours] = useState<number>(0);
+  const [chargingHours, setChargingHours] = useState<number>(1);
   const [result, setResult] = useState<EnergyMixSummary | null>(null);
 
   const handleOptimize = async () => {
@@ -43,6 +43,7 @@ export function OptimizerForm() {
       <button
         className="optimizer-button"
         onClick={handleOptimize}
+        disabled={chargingHours < 1}
       >
         Find best charging time
       </button>
